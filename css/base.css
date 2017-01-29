@@ -1,0 +1,151 @@
+body {
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#canvas3d {
+    z-index: 1;
+}
+
+#game{
+	z-index: 3;
+}
+
+#target {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+    z-index: 4;
+}
+
+#range{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100px;
+    height: 100px;
+    z-index: 3;
+}
+
+#msg {
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    z-index: 3;
+}
+
+#connect {
+    position: absolute;
+    top: 15px;
+    left: 270px;
+    color: white;
+    z-index: 4;
+}
+
+#text{
+    text-align:center;
+}
+
+.text-0{ text-shadow:1px 1px 2px #2c5103; color:#60ad0d;font-size:200%;}
+
+.text-1{
+    text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15);
+    color:#fff;
+    font-size:200%;
+}
+.text-2{ text-shadow:0 0 20px #ff6600; color:#fff;font-size:200%;}
+.text-3{ background: #666; -webkit-background-clip: text; -moz-background-clip: text; background-clip: text; color: transparent; text-shadow:rgba(255,255,255,0.5) 0px 3px 3px;font-size:200%;}
+.text-4{ position: relative; Sans-Serif; letter-spacing: -5px; color: rgba(0,255,240,0.5);font-size:200%;}
+
+#waitimg{
+    margin : 0 auto;
+    text-align:center;
+}
+
+#waitimg img{
+    width:100px;
+    margin : 0 auto;
+}
+
+#gameWaiting{
+	z-index: 1;
+}
+
+
+.dot{
+	position: absolute;
+	width:6px;
+	height: 6px;
+	background: black;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;	
+
+}
+		
+#map{
+	position: absolute;
+	top:-3%;
+    left: 89%;
+	width:13.5%;
+    height: 24%;
+    background: #CDBE70;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+	opacity: 0.5;
+}
+
+#center{
+	position:absolute;
+	top: 48%;
+    left: 48%;
+	width:10px;
+    height: 10px;
+    background: red;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#heart{	
+    position: absolute;
+    top: 10px;
+    left: 10px;
+	width: 30px;
+	height: 30px;
+	 border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+.heart{
+    position: absolute;
+    /* left: 10px;*/
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+

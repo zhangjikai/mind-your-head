@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,
+    user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <script type="text/javascript" src="../js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="getphoto.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0 auto;
+            background: url("images/bg.jpg");
+        }
+
+        #video {
+            position: absolute;
+            z-index: 2;
+            top: 0px;
+            left: 0px;
+            margin: 0px;
+            padding: 0px;
+            /*border: 1px dotted cadetblue;*/
+        }
+
+        #canvas {
+            position: absolute;
+            z-index: 4;
+            top: 0px;
+            left: 0px;
+            background: transparent;
+            /* border: 1px red solid;*/
+        }
+        #tCanvas{
+            /*display: none;*/
+            position: absolute;
+            z-index: 5;
+            top: 0px;
+            left: 0px;
+            background: transparent;
+        }
+
+        .button {
+            position: absolute;
+            right: 0;
+            font-size: 1em;
+            border-radius: 5px;
+            z-index: 6;
+            -moz-border-radius: 5px;
+            -moz-box-shadow: 3px 3px 6px #333333;
+            -webkit-box-shadow: 3px 3px 6px #333333;
+            box-shadow: 3px 3px 6px #333333;
+        }
+        h3{
+            color: #ffffff;
+            z-index: 4;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<h3 id="tip">点击屏幕拍照</h3>
+<form action="../server/uploadImage?gameMode=single" method="post" id="form">
+    <input type="hidden" name="imageData" id="imageData"/>
+</form>
+<video id="video" autoplay="true"></video>
+<canvas id="canvas"></canvas>
+<canvas id="tCanvas" ></canvas>
+<button id="confirm" class="button">确定</button>
+<button id="cancel" class="button">取消</button>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="js/GAME.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/util/Constants.js"></script>
+    <script type="text/javascript" src="js/extras/Record.js"></script>
+    <script type="text/javascript" src="js/main/OpenScreen.js"></script>
+    <!--<link rel="stylesheet" href="css/openScreen.css">-->
+	
+    <link rel="stylesheet" type="text/css" media="screen  and (min-width: 960px) " href="css/openScreenBig.css">
+    <link rel="stylesheet" type="text/css" media="screen  and (max-device-width: 960px) " href="css/openScreenSmall.css">
+</head>
+
+<body>
+<!--<div id="model" onclick="GAME.openScreen.changeModel()">单人模式</div>
+<div id="wire"></div>
+<img id="spider" src="images/screen/spider.png"><img>
+
+<div id="menu">
+    <div id="triangle" class="triangle_right" onclick="GAME.openScreen.showMenu()"></div>
+    <div id="rank" class="rank_white" onclick="GAME.openScreen.showRank()"></div>
+    <div id="camera" class="camera_white" onclick="GAME.openScreen.showCamera()"></div>
+    <div id="set" class="set_white" onclick="showSet()"></div>
+    <div id="about" class="about_white" onclick="showAbout()"></div>
+</div>
+<video id="video" width="0" height="0" autoplay></video>
+<canvas id="camera_block"></canvas>
+
+
+<div id="start" onclick="GAME.openScreen.start()"><h1 class="text-start">开始</h1></div>-->
+
+
+
+<div id="model" onclick="GAME.openScreen.changeModel()">关卡模式</div>
+<div id="wire"></div>
+<img id="spider" src="images/screen/spider.png"><img>
+
+<div id="menu">
+    <div id="triangle" class="triangle_right" onclick="GAME.openScreen.showMenu()"></div>
+    <div id="rank" class="rank_white" onclick="GAME.openScreen.showRank()"></div>
+    <div id="set" class="set_white" onclick="GAME.openScreen.showSet()"></div>
+    <div id="about" class="about_white" onclick="GAME.openScreen.showAbout()"></div>
+</div>
+
+<video id="video" width="0" height="0" autoplay></video>
+<canvas id="camera_block"></canvas>
+
+<div id="set_block">
+    <img  src="images/screen/set_blue.png"></img>
+    <p class="set_text">设置</p>
+
+    <div id="checkbox">
+        <input id="sound" type="checkbox" style="zoom:150%" checked> 音效<br>
+        <input id="music" type="checkbox" style="zoom:150%" checked> 音乐<br>
+        <input id="photo" type="checkbox" style="zoom:150%" > 拍照<br>
+        <input id="gravity" type="checkbox" style="zoom:150%" checked>重力控制<br>
+    </div>
+</div>
+
+<div id="rank_block_top">
+    <div id="fn">&nbsp;1.</div>
+    <div id="sn">&nbsp;2.</div>
+	<div id="tn">&nbsp;3.</div>
+    <div id="fon">&nbsp;4.</div>
+    <div id="ffn">&nbsp;5.</div>
+	<div id="first" >0</div>
+	<div id="second">0</div>
+	<div id="third" >0</div>
+	<div id="fouth" >0</div>
+	<div id="fifth" >0</div>
+</div>
+<div id="rank_block_bottom">排行榜</div>
+
+<div id="about_block">
+    <img  src="images/screen/about_blue.png"></img>
+    <p class="about_text">说明</p>
+	<p class="about_content">&nbsp 本游戏是一款基于HTML5的3D射击类游戏。玩家可以通过摄像头拍取头像为敌人建模。还可以选择利用重力感应来操作游戏。游戏还提供有三种模式。</p>
+</div>
+
+<div id="start" onclick="GAME.openScreen.start()"><h1 class="text-start">开始</h1></div>
+</body>
+</html>

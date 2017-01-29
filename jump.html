@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">-->
+    <meta name="viewport"
+          content="width=device-width,
+    user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"/>
+
+    <script type="x-shader/x-vertex" id="vertexLaser">
+        attribute float size;
+        attribute vec3 pcolor;
+
+        varying vec3 vColor;
+        void main() {
+        vColor = pcolor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = size * ( 250.0 / length( mvPosition.xyz ) );
+        gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentLaser">
+        uniform sampler2D texture;
+        varying vec3 vColor;
+        void main() {
+        vec4 outColor = texture2D( texture, gl_PointCoord );
+        gl_FragColor = outColor * vec4( vColor, 1.0 );
+        }
+    </script>
+
+    <script type="x-shader/x-vertex" id="vertexsnow">
+        attribute float size;
+        attribute vec3 pcolor;
+        varying vec3 vColor;
+        void main() {
+        vColor = pcolor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = size * ( 250.0 / length( mvPosition.xyz ) );
+        gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentsnow">
+        uniform sampler2D texture;
+        uniform float opacity;
+        varying vec3 vColor;
+        void main() {
+        vec4 outColor = texture2D( texture, gl_PointCoord );
+        gl_FragColor = outColor * vec4( vColor, opacity);
+        }
+    </script>
+    <script type="text/javascript" src="js/lib/three.js"></script>
+    <script type="text/javascript" src="js/lib/Stats.js"></script>
+    <script type="text/javascript" src="js/lib/Detector.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/GAME.js"></script>
+    <script type="text/javascript" src="js/extras/Gravity.js"></script>
+    <script type="text/javascript" src="js/extras/Operate.js"></script>
+    <script type="text/javascript" src="js/extras/Manager.js"></script>
+    <script type="text/javascript" src="js/extras/Record.js"></script>
+    <script type="text/javascript" src="js/extras/Face.js"></script>
+    <script type="text/javascript" src="js/extras/Sound.js"></script>
+    <script type="text/javascript" src="js/util/Constants.js"></script>
+    <script type="text/javascript" src="js/util/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/util/Helper.js"></script>
+    <script type="text/javascript" src="js/util/SharedVar.js"></script>
+    <script type="text/javascript" src="js/util/Key.js"></script>
+    <script type="text/javascript" src="js/util/MusicPool.js"></script>
+    <script type="text/javascript" src="js/util/ObjectPool.js"></script>
+    <script type="text/javascript" src="js/server/WaitHelper.js"></script>
+    <script type="text/javascript" src="js/server/Server.js"></script>
+    <script type="text/javascript" src="js/server/Protocol.js"></script>
+    <script type="text/javascript" src="js/server/MsgHandler.js"></script>
+    <script type="text/javascript" src="js/enemys/Enemy.js"></script>
+    <script type="text/javascript" src="js/enemys/CommonEnemy.js"></script>
+    <script type="text/javascript" src="js/enemys/RivalEnemy.js"></script>
+    <script type="text/javascript" src="js/bullets/Bullet.js"></script>
+    <script type="text/javascript" src="js/bullets/CommonBullet.js"></script>
+    <script type="text/javascript" src="js/bullets/EnemyBullet.js"></script>
+    <script type="text/javascript" src="js/bullets/OtherBullets.js"></script>
+    <script type="text/javascript" src="js/effect/SnowParticle.js"></script>
+    <script type="text/javascript" src="js/effect/BulletParticle.js"></script>
+    <script type="text/javascript" src="js/effect/LaserParticle.js"></script>
+    <script type="text/javascript" src="js/effect/MulBullets.js"></script>
+    <script type="text/javascript" src="js/effect/BumbParticle.js"></script>
+    <script type="text/javascript" src="js/effect/Flare.js"></script>
+    <script type="text/javascript" src="js/effect/Props.js"></script>
+    <script type="text/javascript" src="js/main/GameStart.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            GAME.SharedVar.gameMode = parseInt(localStorage.getItem('gameMode'));
+            console.log(GAME.SharedVar.gameMode);
+            GAME.SharedVar.gameType = parseInt(localStorage.getItem('gameType'));
+
+            GAME.SharedVar.gravity = parseInt(localStorage.getItem('gravity'));
+            console.log(GAME.SharedVar.gravity);
+            GAME.SharedVar.sound = parseInt(localStorage.getItem('sound'));
+            GAME.SharedVar.music = parseInt(localStorage.getItem('music'));
+            if(!localStorage.getItem('gameStage')) {
+                localStorage.setItem('gameStage', 0);
+            }
+
+            if (GAME.SharedVar.gameMode == GAME.Constants.SINGLE_MODE) {
+                GAME.gameStart.init();
+                GAME.gameStart.animate();
+                if (GAME.SharedVar.gameType == GAME.Constants.GRADE_MODE)
+                    GAME.Manager.startSingleGame(parseInt(localStorage.getItem('gameStage')),
+                            GAME.gameStart.getCamera(), GAME.gameStart.getScene());
+                if (GAME.SharedVar.gameType == GAME.Constants.SCORE_MODE)
+                    GAME.Manager.startScoreGame(GAME.gameStart.getCamera(), GAME.gameStart.getScene());
+            }
+
+            window.location.href = 'gameIndex.html';
+        }
+    </script>
+
+</head>
+<body>
+<h2><center>正在跳转到游戏界面，请稍后。。。</center></h2>
+<div id="content" style="display: none;">
+<canvas id="face" style="display: none" width="600" height="600">
+</canvas>
+<img src="" id="faceId" style="display: none">
+<script type="text/javascript">
+    if (localStorage.getItem('picType') == 'select') {
+        document.getElementById('faceId').src = localStorage.getItem('picName');
+    }
+</script>
+
+<img src="" id="faceId2" style="display: none">
+<script type="text/javascript">
+    if (localStorage.getItem('picType') == 'photo')
+        var num = localStorage.num;
+    var image2 = document.getElementById('faceId2');
+    image2.src = localStorage.getItem(num);
+</script>
+
+
+<link rel="stylesheet" href="css/base.css">
+<!--<link rel="stylesheet" href="css/operationPanel.css">-->
+<link rel="stylesheet" type="text/css"
+      media="screen and (min-width: 960px) "
+      href="css/operationPanelBig.css">
+<link rel="stylesheet" type="text/css"
+      media="screen and (max-device-width: 960px)"
+      href="css/operationPanelSmall.css">
+<audio id="bgm" loop="loop" preload="auto">
+    <source src="sounds/bgm1.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="hitm" preload="auto">
+    <source src="sounds/hit.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="shootm" preload="auto">
+    <source src="sounds/shoot.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="laserm" preload="auto">
+    <source src="sounds/laser.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="icem" preload="auto">
+    <source src="sounds/icem.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="gruntm" preload="auto">
+    <source src="sounds/grunt.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="successm" preload="auto">
+    <source src="sounds/success.ogg" type="audio/ogg"/>
+</audio>
+
+<audio id="overm" preload="auto">
+    <source src="sounds/over.ogg" type="audio/ogg"/>
+</audio>
+
+<div id="canvas3d"></div>
+
+<div id="game">
+    <img id="target" src="images/shoot.png">
+    <img id="range" src="images/range2.png">
+    <img id="heart1" class="heart" style="left: 10px" src="images/operationPanel/heart.png">
+    <img id="heart2" class="heart" style="left: 40px" src="images/operationPanel/heart.png">
+    <img id="heart3" class="heart" style="left: 70px" src="images/operationPanel/heart.png">
+    <img id="heart4" class="heart" style="left: 100px" src="images/operationPanel/heart.png">
+    <img id="heart5" class="heart" style="left: 130px" src="images/operationPanel/heart.png">
+    <!--<img id="move" src="images/operationPanel/spark.png">-->
+    <input type='button' id="bullet">
+    <input type='button' id="snowflake" class="snow_use">
+
+    <p id="snowflake_num">9</p>
+    <input type='button' id="laser" class="laser_use">
+
+    <p id="laser_num">9</p>
+    <input type='button' id="lighting" class="lighting_use">
+
+    <p id="lighting_num">0</p>
+
+    <div id="last">
+        <img class="image" src="images/operationPanel/monster.png">
+
+        <p id="last_num">:0</p>
+    </div>
+    <div id="score">
+        <img class="image" src="images/operationPanel/flower.PNG">
+
+        <p id="score_num">0</p>
+    </div>
+
+    <div id="move">
+        <input type="button" id="up">
+        <input type="button" id="down">
+        <input type="button" id="right">
+        <input type="button" id="left">
+
+        <div id="pause"></div>
+    </div>
+</div>
+
+<img src="images/head/p1.png" style="display: none" id="image1">
+<img src="images/head/p2.png" style="display: none" id="image2">
+<img src="images/head/p3.png" style="display: none" id="image3">
+<img src="images/head/p4.png" style="display: none" id="image4">
+<img src="images/head/mouth1.png" style="display: none" id="mouth">
+
+</div>
+
+</body>
+</html>
