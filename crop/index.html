@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Resizing with Canvas</title>
+    <meta name="description" content="Learn how to resize images using JavaScript and the HTML5 Canvas element using controls, commonly seen in photo editing applications."/>
+    <meta name="keywords" content="canvas, javascript, HTML5, resizing, images"/>
+    <meta name="author" content="Codrops"/>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/component.css"/>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <!-- Top Navigation -->
+    <!--<div class="codrops-top clearfix">
+        <a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/WobblySlideshowEffect/"><span>Previous Demo</span></a>
+        <span class="right">
+            <a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=20603">
+                <span>Back to the Codrops Article</span>
+            </a>
+        </span>
+    </div>-->
+    <div class="content">
+        <!--<header class="codrops-header">
+            <h1>Image Resizing &amp; Cropping <br/><span>with Canvas</span></h1>
+        </header>-->
+        <div class="component">
+            <div class="overlay">
+                <div class="overlay-inner">
+                </div>
+            </div>
+            <!-- This image must be on the same domain as the demo or it will not work on a local file system -->
+            <!-- http://en.wikipedia.org/wiki/Cross-origin_resource_sharing -->
+            <img class="resize-image" src="img/image.jpg" alt="image for resizing">
+            <button class="btn-crop js-crop">Crop<img class="icon-crop" src="img/crop.svg"></button>
+        </div>
+        <!--<div class="a-tip">
+            <p><strong>Hint:</strong> hold <span>SHIFT</span> while resizing to keep the original aspect ratio.</p>
+        </div>
+        <p>Image by <a href="https://www.flickr.com/photos/janoma/4492768410">Alejandro Mallea</a></p>-->
+    </div>
+    <!-- /content -->
+    <!-- Related demos -->
+
+</div>
+<!-- /container -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/component.js"></script>
+</body>
+</html>

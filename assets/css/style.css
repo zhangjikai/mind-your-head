@@ -1,0 +1,23 @@
+
+.custom-remodal {
+    max-width: 500px;
+    padding: 0 35px 20px;
+}
+
+.modal-title {
+    /* font-size: 1em;
+     line-height: 1.2em;*/
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.modal-desc {
+    font-size: 1em;
+    line-height: 1.5em;
+    text-align: left;
+}
+
+#checkbox span{
+    margin-left: 5px;
+}

@@ -25,7 +25,6 @@ function setSize() {
 
     var confirm = document.getElementById('confirm');
     confirm.style.top = height * 0.7 + 'px';
-    /*confirm.style.right = width * 0.08 + 'px';*/
     confirm.style.width = width * 0.15 + 'px';
     confirm.style.height = height * 0.1 + 'px';
     var cancel = document.getElementById('cancel');
@@ -77,8 +76,8 @@ function addListener() {
     $('#tCanvas').click(picture);
     $('#video').click(picture);
     $('#confirm').click(function () {
-    	if(!hasDraw)
-    		drawHead();
+        if (!hasDraw)
+            drawHead();
         var canvas = document.getElementById('canvas');
 
         var num = localStorage.num;
@@ -90,29 +89,30 @@ function addListener() {
         localStorage.num = num;
         localStorage.setItem(num, canvas.toDataURL("image/png"));
 
-        var flag = confirm('是否上传服务器');
-        if (flag) {
-            document.getElementById('imageData').value = canvas.toDataURL("image/png");
-            document.getElementById('form').submit();
-        } else {
-            window.location.href = 'testPhoto.html';
-        }
+        window.location.href = "testPhoto.html";
+        /*var flag = confirm('是否上传服务器');
+         if (flag) {
+         document.getElementById('imageData').value = canvas.toDataURL("image/png");
+         document.getElementById('form').submit();
+         } else {
+         window.location.href = 'testPhoto.html';
+         }*/
     });
     $('#cancel').click(function () {
         window.location.href = "../index.html";
     });
 }
 
-function drawHead(){
-	 var canvas = document.getElementById('canvas');
-	 var tCanvas = document.getElementById('tCanvas');
-	 var context = canvas.getContext('2d');
-     var tContext = tCanvas.getContext('2d');
-     var video = document.getElementById('video');
-     context.drawImage(video, width * 0.1, height*0.01, width * 0.6, height * 0.98);
-     document.getElementById('video').style.display = "none";
-     canvas.style.zIndex = 4;
-     drawLines(tContext, canvas.width, canvas.height);
+function drawHead() {
+    var canvas = document.getElementById('canvas');
+    var tCanvas = document.getElementById('tCanvas');
+    var context = canvas.getContext('2d');
+    var tContext = tCanvas.getContext('2d');
+    var video = document.getElementById('video');
+    context.drawImage(video, width * 0.1, height * 0.01, width * 0.6, height * 0.98);
+    document.getElementById('video').style.display = "none";
+    canvas.style.zIndex = 4;
+    drawLines(tContext, canvas.width, canvas.height);
 }
 
 var count = 0;
@@ -124,7 +124,7 @@ function picture() {
         var context = canvas.getContext('2d');
         var tContext = tCanvas.getContext('2d');
         var video = document.getElementById('video');
-        context.drawImage(video, width * 0.1, height*0.01, width * 0.6, height * 0.98);
+        context.drawImage(video, width * 0.1, height * 0.01, width * 0.6, height * 0.98);
         document.getElementById('video').style.display = "none";
         canvas.style.zIndex = 4;
         drawLines(tContext, canvas.width, canvas.height);
@@ -168,11 +168,11 @@ function preventDefaultScroll(event) {
     event.preventDefault();
     /*window.scrollTo(0, 1);*/
     return false;
-};
+}
 
 window.onload = function () {
     setSize();
     getVideo();
     addListener();
     document.addEventListener('touchmove', preventDefaultScroll, false);
-}
+};
