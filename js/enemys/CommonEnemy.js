@@ -47,13 +47,13 @@ GAME.CommonEnemy.prototype.checkPosition = function (enemys) {
         }
     }
     return false;
-}
+};
 
 GAME.CommonEnemy.prototype.initPosiotn = function () {
     this.mesh1.position.set(this.mesh.position.x, this.mesh.position.y + this.radius * 1.2, this.mesh.position.z);
     this.mesh2.position.set(this.mesh.position.x, this.mesh.position.y + this.radius * 1.4, this.mesh.position.z);
     this.mesh3.position.set(this.mesh.position.x, this.mesh.position.y + this.radius * 1.4, this.mesh.position.z);
-}
+};
 
 GAME.CommonEnemy.prototype.updateCommonEnemy = function (vector) {
     if (!this.isShow) {
@@ -106,7 +106,7 @@ GAME.CommonEnemy.prototype.updateCommonEnemy = function (vector) {
         case GAME.Constants.Y_OUT_BOUNDS:
             this.moveVector.set(
                 //(Math.random() * 2 - 1) * this.speed,
-                (Math.random() * 4 - 2) * this.speed ,
+                (Math.random() * 4 - 2) * this.speed,
                 -this.moveVector.y,
                 (Math.random() * 4 - 2) * this.speed
             );
@@ -115,18 +115,18 @@ GAME.CommonEnemy.prototype.updateCommonEnemy = function (vector) {
         case GAME.Constants.Z_OUT_BOUNDS:
             this.moveVector.set(
                 (Math.random() * 4 - 2) * this.speed,
-                (Math.random() * 4 - 2) * this.speed ,
+                (Math.random() * 4 - 2) * this.speed,
                 -this.moveVector.z);
             this.caclTopRotateSpeed();
             break;
         case GAME.Constants.MIN_OUT_BOUNDS:
             this.reverseMoveVector();
     }
-}
+};
 
 GAME.CommonEnemy.prototype.reverseMoveVector = function () {
     this.moveVector.set(-this.moveVector.x, -this.moveVector.y, -this.moveVector.z);
-}
+};
 
 GAME.CommonEnemy.prototype.checkBounds = function () {
     var p = this.mesh.position;
@@ -145,29 +145,29 @@ GAME.CommonEnemy.prototype.checkBounds = function () {
         return GAME.Constants.MIN_OUT_BOUNDS;
     }
     return GAME.Constants.NO_OUT_BOUNDS;
-}
+};
 
 GAME.CommonEnemy.prototype.enemyShoot = function (vector) {
     var position = this.mesh.position;
     var bullet = GAME.ObjectPool.getEnemyBullet();
     bullet.speed = this.eBulletSpeed;
     bullet.beginEnemyBullet(vector, position, this.camera, this.scene);
-}
+};
 
 GAME.CommonEnemy.prototype.caclTopRotateSpeed = function () {
     this.topRotateSpeed = Math.sqrt(
-        this.moveVector.x * this.moveVector.x +
+            this.moveVector.x * this.moveVector.x +
             this.moveVector.y * this.moveVector.y +
             this.moveVector.z * this.moveVector.z
-    ) / 50;
+        ) / 50;
     /*this.topRotateSpeed = 0.2;*/
     if (this.topRotateSpeed < 0.15) {
         this.topRotateSpeed = 0.15;
     }
     /* console.log(this.topRotateSpeed);*/
-}
+};
 
-GAME.CommonEnemy.prototype.changeMesh = function (vector,type) {
+GAME.CommonEnemy.prototype.changeMesh = function (vector, type) {
     //var geometry = this.getHeadGeometry(this.radius, 20, 15, type);
     var markText = "mesh:" + type;
     var length = this.meshArray.length;
@@ -196,7 +196,7 @@ GAME.CommonEnemy.prototype.changeMesh = function (vector,type) {
     this.lookVector.set(vector.x, this.mesh.position.y, vector.z);
     this.mesh.lookAt(this.lookVector);
     this.meshArray.push(mesh);
-}
+};
 
 GAME.CommonEnemy.prototype.beginCommonEnemy = function (enemys, camera, scene) {
     this.scene = scene;
@@ -233,4 +233,4 @@ GAME.CommonEnemy.prototype.beginCommonEnemy = function (enemys, camera, scene) {
 
     this.mesh.updateMatrixWorld(true);
 
-}
+};

@@ -84,5 +84,5 @@ window.onbeforeunload = function () {
     GAME.gameStart.stop();
     GAME.Server.socket.close();
     window.location.href = 'server/logout';
-}
+};
 

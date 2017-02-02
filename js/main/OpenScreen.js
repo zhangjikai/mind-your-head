@@ -139,8 +139,8 @@ GAME.openScreen = {
 
     fade: function () {
         document.getElementById("rank").className = "rank_white";
-        document.getElementById("rank_block_top").className = "rank_fade";
-        document.getElementById("rank_block_bottom").className = "rank_fade";
+        //document.getElementById("rank_block_top").className = "rank_fade";
+        //document.getElementById("rank_block_bottom").className = "rank_fade";
 
         document.getElementById("set").className = "set_white";
         document.getElementById("set_block").className = "set_fade";
@@ -167,7 +167,10 @@ GAME.openScreen = {
             localStorage.setItem('gameStage', 0);
         }
 
-        if (this.gameMode == GAME.Constants.SINGLE_MODE) {
+        localStorage.setItem('picType', 'photo');
+        document.location.href = "crop/index.html";
+
+        /*if (this.gameMode == GAME.Constants.SINGLE_MODE) {
             if (document.getElementById('photo').checked) {
                 localStorage.setItem('picType', 'photo');
                 document.location.href = "photo/getPhoto.html";
@@ -175,7 +178,7 @@ GAME.openScreen = {
                 localStorage.setItem('picType', 'select');
                 document.location.href = 'server/loginUpImg.jsp'
             }
-        }
+        }*/
 
         if (this.gameMode == GAME.Constants.FIGHT_MODE) {
 //        	var filename = document.location.search.split('&')[document.location.search.split('&').length-1].substring(9);

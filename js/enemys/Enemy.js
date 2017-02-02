@@ -271,4 +271,4 @@ GAME.Enemy.prototype = {
             }
         }
     }
-}
+};

@@ -284,7 +284,18 @@ var resizeableImage = function (image_target) {
         crop_canvas.height = height;
 
         crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
-        window.open(crop_canvas.toDataURL("image/png"));
+
+        var num = localStorage.num;
+        if (num === undefined) {
+            num = localStorage.num = '1';
+        }
+        localStorage.removeItem(num);
+        num = parseInt(num) + 1 + '';
+        localStorage.num = num;
+        localStorage.setItem(num, crop_canvas.toDataURL("image/png"));
+
+        window.location.href = "../photo/testPhoto.html";
+        //window.open(crop_canvas.toDataURL("image/png"));
     };
 
     init();
