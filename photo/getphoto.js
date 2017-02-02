@@ -90,13 +90,13 @@ function addListener() {
         localStorage.setItem(num, canvas.toDataURL("image/png"));
 
         window.location.href = "testPhoto.html";
-        /*var flag = confirm('是否上传服务器');
-         if (flag) {
-         document.getElementById('imageData').value = canvas.toDataURL("image/png");
-         document.getElementById('form').submit();
-         } else {
-         window.location.href = 'testPhoto.html';
-         }*/
+        //var flag = confirm('是否上传服务器');
+        //if (flag) {
+        //    document.getElementById('imageData').value = canvas.toDataURL("image/png");
+        //    document.getElementById('form').submit();
+        //} else {
+        //    window.location.href = 'testPhoto.html';
+        //}
     });
     $('#cancel').click(function () {
         window.location.href = "../index.html";

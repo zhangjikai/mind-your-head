@@ -21,12 +21,22 @@ var resizeableImage = function (image_target) {
         orig_src.src = image_target.src;
 
         // Wrap the image with the container and add resize handles
-        $(image_target).wrap('<div class="resize-container"></div>')
+        //$(image_target).wrap('<div class="resize-container"></div>')
+        //    .before('<span class="resize-handle resize-handle-nw"></span>')
+        //    .before('<span class="resize-handle resize-handle-ne"></span>')
+        //    .after('<span class="resize-handle resize-handle-se"></span>')
+        //    .after('<span class="resize-handle resize-handle-sw"></span>')
+
+
+        $(image_target).wrap('<div class="resize-container" id="resize-container"></div>')
             .before('<span class="resize-handle resize-handle-nw"></span>')
             .before('<span class="resize-handle resize-handle-ne"></span>')
+            .before('<span class="resize-handle resize-handle-n"></span>')
+            .before('<span class="resize-handle resize-handle-s"></span>')
             .after('<span class="resize-handle resize-handle-se"></span>')
-            .after('<span class="resize-handle resize-handle-sw"></span>');
-
+            .after('<span class="resize-handle resize-handle-sw"></span>')
+            .after('<span class="resize-handle resize-handle-w"></span>')
+            .after('<span class="resize-handle resize-handle-e"></span>');
         // Assign the container to a variable
         $container = $(image_target).parent('.resize-container');
 
@@ -34,6 +44,64 @@ var resizeableImage = function (image_target) {
         $container.on('mousedown touchstart', '.resize-handle', startResize);
         $container.on('mousedown touchstart', 'img', startMoving);
         $('.js-crop').on('click', crop);
+
+        $(".btn-cancel").on('click', function(e) {
+            $("#upload").css("display", "block");
+            $("#crop").css("display", "none");
+        });
+
+        $("#upload-file").on("change", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                var width = image.width;
+                $("#upload").css("display", "none");
+                $("#crop").css("display", "block");
+                //console.log($("#resize-container"));
+                /*var windowWidth = document.getElementById("resize-container").clientWidth;
+                console.log(windowWidth);*/
+                windowWidth = 200;
+
+                if(width > windowWidth) {
+                    width = windowWidth;
+                }
+                /*console.log(width);*/
+                orig_src.src = compressImage(image, getImgExtension(file.name), width);
+                $("#resize-img").attr("src", orig_src.src);
+
+
+            }
+        });
+    };
+
+    compressImage = function (img, format, max_width) {
+
+        var canvas = document.createElement('canvas');
+        var width = img.width;
+        var height = img.height;
+        if (format == null || format == "") {
+            format = "image/png";
+        }
+        format = "image/png";
+        if (width > max_width) {
+            height = Math.round(height *= max_width / width);
+            width = max_width;
+        }
+        // resize the canvas and draw the image data into it
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        return canvas.toDataURL(format);
+    };
+
+    getImgExtension = function (str) {
+        return str.substr(str.lastIndexOf(".") + 1) || str;
     };
 
     startResize = function (e) {
@@ -104,6 +172,32 @@ var resizeableImage = function (image_target) {
             if (constrain || e.shiftKey) {
                 top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
             }
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-n')) {
+            width = event_state.container_width;
+            height = event_state.container_height - (mouse.y - event_state.container_top);
+            left = event_state.container_left;
+            top = mouse.y;
+            if (constrain || e.shiftKey) {
+                top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
+            }
+
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-s')) {
+            width = event_state.container_width;
+            height = mouse.y - event_state.container_top;
+            left = event_state.container_left;
+            top = event_state.container_top;
+
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-w')) {
+            console.log(222);
+            width = event_state.container_width - (mouse.x - event_state.container_left);
+            height = event_state.container_height;
+            left = mouse.x;
+            top = event_state.container_top;
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-e')) {
+            width = mouse.x - event_state.container_left;
+            height = event_state.container_height;
+            left = event_state.container_left;
+            top = event_state.container_top;
         }
 
         // Optionally maintain aspect ratio
@@ -117,7 +211,7 @@ var resizeableImage = function (image_target) {
             // Without this Firefox will not re-calculate the the image dimensions until drag end
             $container.offset({'left': left, 'top': top});
         }
-    }
+    };
 
     resizeImage = function (width, height) {
         resize_canvas.width = width;
@@ -191,7 +285,7 @@ var resizeableImage = function (image_target) {
 
         crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
         window.open(crop_canvas.toDataURL("image/png"));
-    }
+    };
 
     init();
 };

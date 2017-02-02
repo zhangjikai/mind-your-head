@@ -3,13 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-
     <!--<link rel="stylesheet" href="css/openScreen.css">-->
     <!--<link rel="stylesheet" type="text/css" href="css/openScreenBig.css">-->
     <link rel="stylesheet" type="text/css" href="css/openScreenSmall.css">
     <!--<link rel="stylesheet" type="text/css" media="screen and (min-width: 960px) " href="css/openScreenBig.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width: 960px) " href="css/openScreenSmall.css">-->
-
     <link rel="stylesheet" type="text/css" href="assets/lib/remodal/dist/remodal.css">
     <link rel="stylesheet" type="text/css" href="assets/lib/remodal/dist/remodal-default-theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -29,52 +27,15 @@
     <div id="about" class="about_white" onclick="GAME.openScreen.showAbout()"></div>
 </div>
 
-<!--<video id="video" width="0" height="0" autoplay></video>
-<canvas id="camera_block"></canvas>
-
-<div id="set_block">
-    <img  src="images/screen/set_blue.png">
-    <p class="set_text">设置</p>
-
-    <div id="checkbox">
-        <input id="sound" type="checkbox" style="zoom:150%" checked> 音效<br>
-        <input id="music" type="checkbox" style="zoom:150%" checked> 音乐<br>
-        <input id="photo" type="checkbox" style="zoom:150%" > 拍照<br>
-        <input id="gravity" type="checkbox" style="zoom:150%" checked>重力控制<br>
-    </div>
-</div>
-
-<div id="rank_block_top">
-    <div id="fn">&nbsp;1.</div>
-    <div id="sn">&nbsp;2.</div>
-	<div id="tn">&nbsp;3.</div>
-    <div id="fon">&nbsp;4.</div>
-    <div id="ffn">&nbsp;5.</div>
-	<div id="first" >0</div>
-	<div id="second">0</div>
-	<div id="third" >0</div>
-	<div id="fouth" >0</div>
-	<div id="fifth" >0</div>
-</div>
-<div id="rank_block_bottom">排行榜</div>
-
-<div id="about_block">
-    <img  src="images/screen/about_blue.png">
-    <p class="about_text">说明</p>
-	<p class="about_content">&nbsp 本游戏是一款基于HTML5的3D射击类游戏。玩家可以通过摄像头拍取头像为敌人建模。还可以选择利用重力感应来操作游戏。</p>
-</div>-->
-
 <div id="start" onclick="GAME.openScreen.start()"><h1 class="text-start">开始</h1></div>
 
 <div class="remodal custom-remodal" data-remodal-id="about" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
     <!--<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>-->
     <div>
         <h2 id="modalTitle" class="modal-title">说明</h2>
-
         <p id="modalDesc" class="modal-desc">
             本游戏是一款基于HTML5的3D射击类游戏，使用 <a href="#">ThreeJs</a> 框架。使用人脸作为敌人的头像，增加游戏的趣味性。同时游戏支持手机、平板和电脑等多种设备。
         </p>
-
     </div>
     <br>
     <button data-remodal-action="confirm" class="remodal-confirm">确定</button>
@@ -84,11 +45,9 @@
     <!--<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>-->
     <div>
         <h2 class="modal-title">游戏玩法</h2>
-
         <p class="modal-desc">
             电脑：通过 W/A/S/D 控制方向，J 发射子弹， K 发射炮弹（发射后再点击 J 引爆），L 发射激光，P 发射冰冻弹。
         </p>
-
         <p class="modal-desc">
             手机：重力模式下通过手机重力感应移动，非重力模式下通过点击屏幕图标移动。
         </p>
@@ -101,19 +60,12 @@
     <!--<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>-->
     <div>
         <h2 class="modal-title">设置</h2>
-
         <div id="checkbox">
             <input id="sound" type="checkbox" checked><span>音效</span> <br>
             <input id="music" type="checkbox" checked><span>音乐</span> <br>
             <input id="photo" type="checkbox" checked><span>拍照</span> <br>
             <input id="gravity" type="checkbox" checked><span>重力控制</span><br>
         </div>
-        <!--<p class="modal-desc">
-            电脑：通过 W/A/S/D 控制方向，J 发射子弹， K 发射炮弹（发射后再点击 J 引爆），L 发射激光，P 发射冰冻弹。
-        </p>
-        <p class="modal-desc">
-            手机：重力模式下通过手机重力感应移动，非重力模式下通过点击屏幕图标移动。
-        </p>-->
     </div>
     <br>
     <button data-remodal-action="confirm" class="remodal-confirm">确定</button>
