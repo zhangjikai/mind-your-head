@@ -72,7 +72,7 @@ GAME.Gravity = function () {
             }
         }
         //showText(graX_, graY_, linearX_, linearY_);
-    }
+    };
 
     this.move = function (controls) {
 
@@ -107,7 +107,7 @@ GAME.Gravity = function () {
                 return;
             }
         }
-    }
+    };
 
     function showText(x, y, x1, y1) {
         $('#msg').html('x:' + x + ' y:' + y + ' x1:' + x1 + ' y1:' + y1);

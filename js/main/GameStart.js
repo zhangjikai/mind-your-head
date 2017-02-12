@@ -452,6 +452,7 @@ GAME.GameStart = function () {
                         break;
                     case GAME.Key.SPACE:
                         moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
+                        break;
                 }
             });
             $(document).keyup(function (event) {

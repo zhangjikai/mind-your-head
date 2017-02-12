@@ -166,7 +166,7 @@ GAME.Operate = function () {
             default :
                 return;
         }
-    }
+    };
 
     this.addLaserLeft = function () {
         laseLeft++;
