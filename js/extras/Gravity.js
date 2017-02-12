@@ -71,7 +71,7 @@ GAME.Gravity = function () {
                 moveDirect_ = GAME.Constants.DIRECTION_Y_MOVE;
             }
         }
-        showText(graX_, graY_, linearX_, linearY_);
+        //showText(graX_, graY_, linearX_, linearY_);
     }
 
     this.move = function (controls) {

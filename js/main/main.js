@@ -16,7 +16,7 @@ window.onload = function () {
         $("#game").css("display", "none");
         swal({
             title: "",
-            text: "程序出现错误，请返回&nbsp;<a href='../../index.html'>首页</a>&nbsp;重试",
+            text: "程序出现错误，请返回&nbsp;<a href='index.html'>首页</a>&nbsp;重试",
             html: true,
             type: "error",
             showConfirmButton: false

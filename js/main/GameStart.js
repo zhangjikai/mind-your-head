@@ -263,7 +263,7 @@ GAME.GameStart = function () {
                     if (isConfirm) {
                         location.reload();
                     } else {
-                        window.location.href = '../index.html';
+                        window.location.href = 'index.html';
                     }
                 });
 
@@ -324,7 +324,7 @@ GAME.GameStart = function () {
                     if (isConfirm) {
                         location.reload();
                     } else {
-                        window.location.href = '../index.html';
+                        window.location.href = 'index.html';
                     }
                 });
 
