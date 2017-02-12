@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <!--    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -20,11 +19,67 @@
         }
     </script>
     <link rel="stylesheet" type="text/css" href="css/loading.css"/>
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
-   <!--  <script src="http://211.87.225.166:8081/target/target-script-min.js#anonymous"></script>  -->
+    <link rel="stylesheet" type="text/css" href="assets/lib/loaders/loaders.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
+
+    <style type="text/css">
+        .single4 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 6px solid #EEEEEE;
+            border-top-color: #BFBFBF;
+            border-bottom-color: #BFBFBF;
+            -webkit-animation: single4 2.5s infinite ease-in-out;
+            animation: single4 2.5s infinite ease-in-out;
+        }
+
+        @-webkit-keyframes single4 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(540deg);
+                transform: rotate(540deg);
+            }
+        }
+
+        @keyframes single4 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(540deg);
+                transform: rotate(540deg);
+            }
+        }
+    </style>
 </head>
 <body>
+
+<div class="single4"></div>
+
+
+<div class="loading-background" id="loader">
+    <div class="loading-icon">
+        <div class="loader">
+            <div class="pacman">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
 
 <div id="loading">
     <div class="loading-container">
@@ -38,24 +93,23 @@
     </div>
 </div>
 
-
 <canvas id="face" style="display: none" width="600" height="600">
 </canvas>
 <canvas id="face2" style="display: none" width="600" height="600">
 </canvas>
 <img src="" id="faceId" style="display: none">
 <script type="text/javascript">
- 	if(localStorage.getItem('picType') == 'select'){
-    	document.getElementById('faceId').src = localStorage.getItem('picName');
+    if (localStorage.getItem('picType') == 'select') {
+        document.getElementById('faceId').src = localStorage.getItem('picName');
     }
 </script>
 
 <img src="" id="faceId2" style="display: none">
 <script type="text/javascript">
-	if(localStorage.getItem('picType') == 'photo')
-		var num = localStorage.num;
-		var image2 = document.getElementById('faceId2');
-	    image2.src = localStorage.getItem(num);
+    if (localStorage.getItem('picType') == 'photo')
+        var num = localStorage.num;
+    var image2 = document.getElementById('faceId2');
+    image2.src = localStorage.getItem(num);
 </script>
 
 <script type="x-shader/x-vertex" id="vertexLaser">
@@ -69,6 +123,7 @@
     gl_PointSize = size * ( 250.0 / length( mvPosition.xyz ) );
     gl_Position = projectionMatrix * mvPosition;
     }
+
 </script>
 
 <script type="x-shader/x-fragment" id="fragmentLaser">
@@ -78,6 +133,7 @@
     vec4 outColor = texture2D( texture, gl_PointCoord );
     gl_FragColor = outColor * vec4( vColor, 1.0 );
     }
+
 </script>
 
 <script type="x-shader/x-vertex" id="vertexsnow">
@@ -90,6 +146,7 @@
     gl_PointSize = size * ( 250.0 / length( mvPosition.xyz ) );
     gl_Position = projectionMatrix * mvPosition;
     }
+
 </script>
 
 <script type="x-shader/x-fragment" id="fragmentsnow">
@@ -100,6 +157,7 @@
     vec4 outColor = texture2D( texture, gl_PointCoord );
     gl_FragColor = outColor * vec4( vColor, opacity);
     }
+
 </script>
 
 
@@ -237,7 +295,7 @@
     <img id="heart4" class="heart" style="left: 100px" src="images/operationPanel/heart.png">
     <img id="heart5" class="heart" style="left: 130px" src="images/operationPanel/heart.png">
     <!--<img id="move" src="images/operationPanel/spark.png">-->
-    <input type='button' id="bullet"> 
+    <input type='button' id="bullet">
     <input type='button' id="snowflake" class="snow_use">
 
     <p id="snowflake_num">9</p>
@@ -264,6 +322,7 @@
         <input type="button" id="down">
         <input type="button" id="right">
         <input type="button" id="left">
+
         <div id="pause"></div>
     </div>
 </div>
@@ -273,14 +332,7 @@
 <img src="images/head/p3.png" style="display: none" id="image3">
 <img src="images/head/p4.png" style="display: none" id="image4">
 <img src="images/head/mouth1.png" style="display: none" id="mouth">
-<!-- <canvas id="face" style="display: none" width="600" height="600">
-</canvas>
-<canvas id="face2" style="display: none" width="600" height="600">
-</canvas>
- -->
-<!--<div id="msg">x:0 y :0</div>-->
-<!--<input type="text" id="text">
-<div id="connect">连接</div>-->
+
 
 </body>
 

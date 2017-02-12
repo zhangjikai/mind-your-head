@@ -275,3 +275,10 @@ GAME.Helper.targetShow = function(){
 
 
 
+
+GAME.Helper.isMobile = function() {
+    return isMobile.any();
+};
+
+
+

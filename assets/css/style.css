@@ -18,6 +18,500 @@
     text-align: left;
 }
 
-#checkbox span{
+#checkbox span {
     margin-left: 5px;
+}
+
+.loading-bg {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.loading-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    filter: alpha(opacity=70);
+    /*IE*/
+    -moz-opacity: 0.7;
+    /*old Mozilla*/
+    -khtml-opacity: 0.7;
+    /*old Safari*/
+    opacity: 0.7;
+    /*Chrome, Opera, Safari*/
+    z-index: 999999;
+}
+
+
+
+.loading-icon {
+    margin: auto;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    width: 60px;
+}
+
+.square-spin > div {
+    border: 0px;
+}
+
+#last img, #score img {
+    width: 50px;
+    height: 50px;
+}
+
+#last img {
+    position: absolute;
+    top: 30px;
+    right: 100px;
+}
+
+#last_num {
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    top: 30px;
+    right: 30px;
+
+    font-size: 200%;
+    color: #FFFF00;
+}
+
+#score img {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+
+}
+
+#score_num {
+    position: absolute;
+    top: 100px;
+    right: 30px;
+    font-size: 200%;
+    color: #FFFF00;
+    display: block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+
+@media only screen and (max-width: 992px) {
+    #last img, #score img {
+        width: 40px;
+        height: 40px;
+    }
+
+    #last img {
+        position: absolute;
+        top: 30px;
+        right: 80px;
+    }
+
+    #last_num {
+        top: 30px;
+        right: 20px;
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    #score img {
+        position: absolute;
+        top: 80px;
+        right: 80px;
+    }
+
+    #score_num {
+        top: 80px;
+        right: 20px;
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #last img, #score img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #last img {
+        position: absolute;
+        top: 10px;
+        right: 50px;
+    }
+
+    #last_num {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 150%;
+    }
+
+    #score img {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+    }
+
+    #score_num {
+        top: 50px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 150%;
+    }
+}
+
+.props {
+    border-radius: 100%;
+    border: 2px solid white;
+    opacity: 1;
+    z-index: 1;
+}
+
+.phone_gravity .props input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 2px solid white;
+    opacity: 1;
+    z-index: 1;
+}
+
+.props span {
+    position: relative;
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    font-size: 200%;
+    text-align: center;
+    color: white;
+    text-shadow: 0px -3px 4px green, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+    /*pointer-events: none;*/
+    z-index: 3;
+}
+
+.snow-use {
+    background: url(../../images/operationPanel/big/snowflake.png) no-repeat center;
+    background-size: 90% 90%;
+    z-index: 1;
+}
+
+.bomb-use {
+    background: url(../../images/operationPanel/big/bomb.png) no-repeat center;
+    background-size: 80% 80%;
+    z-index: 1;
+}
+
+.laser-use {
+    background: url(../../images/operationPanel/big/laser.png) no-repeat center;
+    background-size: 90% 90%;
+    z-index: 1;
+}
+
+.snow-cool {
+    background: url(../../images/operationPanel/big/snowflakeCooling.png) no-repeat center;
+    background-size: 90% 90%;
+    z-index: 1;
+}
+
+.bomb-cool {
+    background: url(../../images/operationPanel/big/bomCooling.png) no-repeat center;
+    background-size: 80% 80%;
+    z-index: 1;
+}
+
+.laser-cool {
+    background: url(../../images/operationPanel/big/laserCooling.png) no-repeat center;
+    background-size: 90% 90%;
+    z-index: 1;
+}
+
+.phone_gravity .props-snow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 100px;
+    bottom: 150px;
+}
+
+.phone_gravity .props-bomb {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 170px;
+    bottom: 30px;
+}
+
+.phone_gravity .props-laser {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 30px;
+    bottom: 30px;
+}
+
+.phone_gravity #bullet {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 2px solid white;
+    background: url(../../images/operationPanel/big/bullet.png) no-repeat center;
+    background-size: 70% 70%;
+}
+
+.phone_gravity #move {
+    display: none;
+}
+
+@media only screen and (max-width: 992px) {
+    .phone_gravity .props-snow {
+        width: 80px;
+        height: 80px;
+        right: 80px;
+        bottom: 116px;
+    }
+
+    .phone_gravity .props-bomb {
+        width: 80px;
+        height: 80px;
+        right: 130px;
+        bottom: 30px;
+    }
+
+    .phone_gravity .props-laser {
+        width: 80px;
+        height: 80px;
+        right: 30px;
+        bottom: 30px;
+    }
+
+    .phone_gravity .props span {
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .phone_gravity #bullet {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .phone_gravity .props-snow {
+        width: 50px;
+        height: 50px;
+        right: 45px;
+        bottom: 70px;
+    }
+
+    .phone_gravity .props-bomb {
+        width: 50px;
+        height: 50px;
+        right: 80px;
+        bottom: 10px;
+    }
+
+    .phone_gravity .props-laser {
+        width: 50px;
+        height: 50px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .phone_gravity .props span {
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .phone_gravity #bullet {
+        width: 100px;
+        height: 100px;
+        left: 10px;
+        bottom: 10px;
+    }
+}
+
+.phone_move #bullet {
+    position: absolute;
+    right: 130px;
+    bottom: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 2px solid white;
+    background: url(../../images/operationPanel/big/bullet.png) no-repeat center;
+    background-size: 70% 70%;
+}
+
+.phone_move .props-snow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 140px;
+    bottom: 150px;
+}
+
+.phone_move .props-bomb {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 236px;
+    bottom: 90px;
+}
+
+.phone_move .props-laser {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 44px;
+    bottom: 90px;
+}
+
+.phone_move .props span {
+    height: 80px;
+    line-height: 80px;
+}
+
+#move {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    width: 200px;
+    height: 200px;
+    background: #FFFAFA;
+    opacity: 0.8;
+    border-radius: 100%;
+
+}
+
+#up {
+    position: absolute;
+    top: 2%;
+    left: 28%;
+    margin: 0 auto;
+    width: 44%;
+    height: 30%;
+    background: #FF0000;
+    border-radius: 20px;
+}
+
+#down {
+    position: absolute;
+    top: 68%;
+    left: 28%;
+    margin: 0 auto;
+    width: 44%;
+    height: 30%;
+    background: #FF0000;
+    border-radius: 20px;
+}
+
+#right {
+    position: absolute;
+    top: 28%;
+    left: 68%;
+    width: 30%;
+    height: 44%;
+    background: #1874CD;
+    border-radius: 20px;
+
+}
+
+#left {
+    position: absolute;
+    top: 28%;
+    left: 2%;
+    width: 30%;
+    height: 44%;
+    background: #1874CD;
+    border-radius: 20px;
+}
+
+#pause {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    background: #696969;
+    border: #DCDCDC solid 2px;
+    opacity: 0.4;
+    border-radius: 100%;
+    margin-left: -2px;
+    margin-top: -2px;
+}
+
+@media only screen and (max-width: 768px) {
+    .phone_move #bullet {
+        position: absolute;
+        right: 51px;
+        bottom: 10px;
+        width: 60px;
+        height: 60px;
+
+    }
+
+    .phone_move .props-snow {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 61px;
+        bottom: 80px;
+    }
+
+    .phone_move .props-bomb {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 112px;
+        bottom: 50px;
+    }
+
+    .phone_move .props-laser {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        bottom: 50px;
+    }
+
+    .phone_move .props span {
+        height: 40px;
+        line-height: 40px;
+        font-size: 150%;
+    }
+
+    #move {
+        left: 10px;
+        bottom: 10px;
+        width: 110px;
+        height: 110px;
+    }
 }

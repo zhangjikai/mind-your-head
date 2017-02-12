@@ -20,6 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "^3.1.1",
-    "remodal": "^1.1.1"
+    "loaders.css": "^0.1.2",
+    "remodal": "^1.1.1",
+    "sweetalert": "^1.1.3"
   }
 }

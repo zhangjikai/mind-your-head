@@ -198,6 +198,9 @@
     -o-animation-direction: alternate;
 }
 
+#start h1 {
+    line-height: 1em;
+}
 @keyframes start {
     from {
         width: 60px;

@@ -11,7 +11,7 @@ GAME.SharedVar = GAME.SharedVar || {};
 GAME.SharedVar.scWidthHalf = window.innerWidth / 2;
 GAME.SharedVar.scHeightHalf = window.innerHeight / 2;
 
-GAME.SharedVar.initScreenVlaues = function() {
+GAME.SharedVar.initScreenVlaues = function () {
     GAME.SharedVar.scWidthHalf = window.innerWidth / 2;
     GAME.SharedVar.scHeightHalf = window.innerHeight / 2;
 }
@@ -22,6 +22,8 @@ GAME.SharedVar.gameMode = GAME.Constants.SINGLE_MODE;
 GAME.SharedVar.gameType = GAME.Constants.GRADE_MODE;
 
 GAME.SharedVar.gravity = 1;
+
+GAME.SharedVar.isPhone = 0;
 
 GAME.SharedVar.music = 1;
 

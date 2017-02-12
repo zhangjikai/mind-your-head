@@ -30,7 +30,7 @@ GAME.GameStart = function () {
         this.initThree();
         GAME.Sound.initMusic();
         GAME.Sound.playBgMusic();
-      /* addListener();*/
+        /* addListener();*/
         this.addListener();
         /*addStats();*/
         this.render();
@@ -235,25 +235,43 @@ GAME.GameStart = function () {
                 if (GAME.SharedVar.gameType == GAME.Constants.SCORE_MODE) {
                     GAME.record.save(parseInt($('#score_num').html()));
                 }
-                var flag = confirm('你输了 是否重新开始>>>');
-                if (flag) {
-                 /*  GAME.Sound.stopOverSound();
-                    GAME.Sound.playBgMusic();
-                    if (GAME.SharedVar.gameType == GAME.Constants.GRADE_MODE)
-                        singleRestart();
-                    if (GAME.SharedVar.gameType == GAME.Constants.SCORE_MODE) {
-                        scoreRestart();
-                    }*/
-                	location.reload();
-                } else {
-                    this_.stop();
-                    window.location.href = 'index.html';
-                }
+                //var flag = confirm('你输了 是否重新开始>>>');
+                //if (flag) {
+                //    /*  GAME.Sound.stopOverSound();
+                //     GAME.Sound.playBgMusic();
+                //     if (GAME.SharedVar.gameType == GAME.Constants.GRADE_MODE)
+                //     singleRestart();
+                //     if (GAME.SharedVar.gameType == GAME.Constants.SCORE_MODE) {
+                //     scoreRestart();
+                //     }*/
+                //    location.reload();
+                //} else {
+                //    this_.stop();
+                //    window.location.href = 'index.html';
+                //}
+
+                swal({
+                    title: "你输了",
+                    text: "重新开始",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "是",
+                    cancelButtonText: "否",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        location.reload();
+                    } else {
+                        window.location.href = '../../index.html';
+                    }
+                });
+
             } else {
                 GAME.Sound.stopBgMusic();
                 GAME.Sound.playOverSound();
                 //resetAll();
-                
+
                 var text = '#heart' + GAME.SharedVar.lifeSpare;
                 $(text).css({
                     display: 'none'
@@ -261,20 +279,20 @@ GAME.GameStart = function () {
                 GAME.SharedVar.lifeSpare--;
                 this_.stop();
                 //GAME.gameStart.removeListener();
-               GAME.Server.sendMessage(GAME.Protocol.TRANSMIT_DATA + GAME.Protocol.RIVAL_LOST);
-               alert("你输了，即将返回游戏大厅");
-               window.location.href = 'server/GameHall.jsp';
-             /*  var flag = confirm('你输了>>> 是否重新开始???');
-               if (flag) {
-                    GAME.Sound.playBgMusic();
-                    GAME.Sound.stopOverSound();
-                    GAME.preOrder++;
-                    GAME.Server.sendMessage(GAME.Protocol.TRANSMIT_DATA
-                        + GAME.Protocol.PREPARE + GAME.preOrder);
-                    GAME.waitHelper.showWaiting();
-               } else {
-                   window.location.href = 'server/GameHall.jsp';
-               }*/
+                GAME.Server.sendMessage(GAME.Protocol.TRANSMIT_DATA + GAME.Protocol.RIVAL_LOST);
+                alert("你输了，即将返回游戏大厅");
+                window.location.href = 'server/GameHall.jsp';
+                /*  var flag = confirm('你输了>>> 是否重新开始???');
+                 if (flag) {
+                 GAME.Sound.playBgMusic();
+                 GAME.Sound.stopOverSound();
+                 GAME.preOrder++;
+                 GAME.Server.sendMessage(GAME.Protocol.TRANSMIT_DATA
+                 + GAME.Protocol.PREPARE + GAME.preOrder);
+                 GAME.waitHelper.showWaiting();
+                 } else {
+                 window.location.href = 'server/GameHall.jsp';
+                 }*/
             }
         }
     }
@@ -292,18 +310,36 @@ GAME.GameStart = function () {
                 var stage = parseInt(localStorage.getItem('gameStage')) + 1;
                 localStorage.setItem('gameStage', stage);
                 GAME.record.save(parseInt($('#score_num').html()));
-                var win = confirm("你赢了！！！是否继续下一关？？？");
-                if (win) {
-                    /*GAME.Sound.stopSucSound();
-                    GAME.Sound.playBgMusic();
-                    winCount = 0;
-                    GAME.SharedVar.enemysNum = 10;
-                    GAME.Manager.startSingleGame(stage, camera, scene);*/
-                	location.reload();
-                } else {
-                    this_.stop();
-                    window.location.href = 'index.html';
-                }
+
+                swal({
+                    title: "你赢了！！！",
+                    text: "是否继续下一关？",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "是",
+                    cancelButtonText: "否",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        location.reload();
+                    } else {
+                        window.location.href = '../../index.html';
+                    }
+                });
+
+                //var win = confirm("你赢了！！！是否继续下一关？？？");
+                //if (win) {
+                //    /*GAME.Sound.stopSucSound();
+                //     GAME.Sound.playBgMusic();
+                //     winCount = 0;
+                //     GAME.SharedVar.enemysNum = 10;
+                //     GAME.Manager.startSingleGame(stage, camera, scene);*/
+                //    location.reload();
+                //} else {
+                //    this_.stop();
+                //    window.location.href = 'index.html';
+                //}
             }
         }
     }
@@ -312,12 +348,12 @@ GAME.GameStart = function () {
     this.render = function () {
         renderer.clear();
         renderer.render(scene, camera);
-    }
+    };
 
     function singleRestart() {
 
-       // this_.addListener();
-       /* bgm.play();*/
+        // this_.addListener();
+        /* bgm.play();*/
         GAME.Sound.playBgMusic();
         GAME.SharedVar.lifeSpare = 5;
         var length = 6;
@@ -392,219 +428,212 @@ GAME.GameStart = function () {
 
     /** 添加事件监听*/
     this.addListener = function () {
-    /*function addListener(){*/
+        /*function addListener(){*/
         //添加键盘监听
-       $(document).keydown(function (event) {
-            switch (event.keyCode) {
-                case GAME.Key.UP:
-                    controls.rotateDown();
+
+        if (!GAME.SharedVar.isPhone) {
+            $(document).keydown(function (event) {
+                switch (event.keyCode) {
+                    case GAME.Key.UP:
+                        controls.rotateDown();
+                        moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
+                        break;
+                    case GAME.Key.DOWN:
+                        controls.rotateUp();
+                        moveDirection = GAME.Constants.DIRECTION_UP_MOVE;
+                        break;
+                    case GAME.Key.LEFT:
+                        controls.rotateRight();
+                        moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
+                        break;
+                    case GAME.Key.RIGHT:
+                        controls.rotateLeft();
+                        moveDirection = GAME.Constants.DIRECTION_LEFT_MOVE;
+                        break;
+                    case GAME.Key.SPACE:
+                        moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
+                }
+            });
+            $(document).keyup(function (event) {
+                if (event.keyCode == GAME.Key.S) {
+                    //GAME.Helper.FullScreen();
+                    GAME.operate.commonShoot(getTargetVector(), camera, scene);
+                    //shootm.play();
+                    GAME.Sound.playShootSound();
+                    return;
+                }
+                if (event.keyCode == GAME.Key.A) {
+                    GAME.operate.laserShoot(scene);
+                    return;
+                }
+                if (event.keyCode == GAME.Key.W) {
+                    GAME.operate.snowShoot(getTargetVector(), camera, scene);
+                    return;
+                }
+                if (event.keyCode == GAME.Key.D) {
+                    GAME.operate.bumbShoot(getTargetVector(), camera, scene);
+                }
+            });
+        } else {
+
+            if (!GAME.SharedVar.gravity) {
+                document.getElementById('up').addEventListener('touchstart', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.down = true;
                     moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
-                    break;
-                case GAME.Key.DOWN:
-                    controls.rotateUp();
+                }, false);
+
+                document.getElementById('down').addEventListener('touchstart', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.up = true;
                     moveDirection = GAME.Constants.DIRECTION_UP_MOVE;
-                    break;
-                case GAME.Key.LEFT:
-                    controls.rotateRight();
-                    moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
-                    break;
-                case GAME.Key.RIGHT:
-                    controls.rotateLeft();
+                }, false);
+                document.getElementById('right').addEventListener('touchstart', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.left = true;
                     moveDirection = GAME.Constants.DIRECTION_LEFT_MOVE;
-                    break;
-                case GAME.Key.SPACE:
+                }, false);
+                document.getElementById('left').addEventListener('touchstart', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.right = true;
+                    moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
+                }, false);
+                document.getElementById('pause').addEventListener('touchstart', function (ev) {
+                    ev.preventDefault();
                     moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
+                }, false);
+
+                document.getElementById('up').addEventListener('touchend', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.down = false;
+                }, false);
+                document.getElementById('down').addEventListener('touchend', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.up = false;
+                }, false);
+                document.getElementById('left').addEventListener('touchend', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.right = false;
+                }, false);
+                document.getElementById('right').addEventListener('touchend', function (ev) {
+                    ev.preventDefault();
+                    GAME.SharedVar.left = false;
+                }, false);
+
+
+            } else {
+                window.addEventListener('devicemotion', GAME.gravity.motionHandler, false);
             }
-        });
-        $(document).keyup(function (event) {
-            if (event.keyCode == GAME.Key.S) {
-                //GAME.Helper.FullScreen();
+
+
+            //document.getElementById('snowflake').addEventListener('touchstart', function (e) {
+            //    e.preventDefault();
+            //    GAME.operate.snowShoot(getTargetVector(), camera, scene);
+            //}, false);
+            //
+            //document.getElementById('laser').addEventListener('touchstart', function (e) {
+            //    e.preventDefault();
+            //    GAME.operate.laserShoot(scene);
+            //}, false);
+
+
+            document.getElementById('bullet').addEventListener('touchstart', function (e) {
+                e.preventDefault();
                 GAME.operate.commonShoot(getTargetVector(), camera, scene);
                 //shootm.play();
                 GAME.Sound.playShootSound();
-                return;
-            }
-            if (event.keyCode == GAME.Key.A) {
-                GAME.operate.laserShoot(scene);
-                return;
-            }
-            if (event.keyCode == GAME.Key.W) {
+                GAME.Helper.FullScreen();
+            }, false);
+
+            document.getElementById('snowflake_num').addEventListener('touchstart', function (e) {
+                e.preventDefault();
                 GAME.operate.snowShoot(getTargetVector(), camera, scene);
-                return;
-            }
-            if (event.keyCode == GAME.Key.D) {
+            }, false);
+
+            document.getElementById('laser_num').addEventListener('touchstart', function (e) {
+                e.preventDefault();
+                GAME.operate.laserShoot(scene);
+            }, false);
+
+            document.getElementById('bomb_num').addEventListener('touchstart', function (e) {
+                e.preventDefault();
                 GAME.operate.bumbShoot(getTargetVector(), camera, scene);
-            }
-        });
-        //重力感应监听
-        /*  $(window).bind('devicemotion', GAME.gravity.motionHandler);*/
-
-        document.getElementById('up').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = true;
-            moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
-        }, false);
-        /*document.getElementById('canvas3d').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = true;
-            moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
-        	ev.preventDefault();
-        	console.log("点击了canvas");
-        }, false);*/
-        document.getElementById('down').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.up = true;
-            moveDirection = GAME.Constants.DIRECTION_UP_MOVE;
-        }, false);
-        document.getElementById('right').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.left = true;
-            moveDirection = GAME.Constants.DIRECTION_LEFT_MOVE;
-        }, false);
-        document.getElementById('left').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.right = true;
-            moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
-        }, false);
-        document.getElementById('pause').addEventListener('touchstart', function (ev) {
-            ev.preventDefault();
-            moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
-        }, false);
-
-        document.getElementById('up').addEventListener('touchend', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = false;
-        }, false);
-        document.getElementById('down').addEventListener('touchend', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.up = false;
-        }, false);
-        document.getElementById('left').addEventListener('touchend', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.right = false;
-        }, false);
-        document.getElementById('right').addEventListener('touchend', function (ev) {
-            ev.preventDefault();
-            GAME.SharedVar.left = false;
-        }, false);
-
-        document.getElementById('bullet').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-         GAME.operate.commonShoot(getTargetVector(), camera, scene);
-         //shootm.play();
-         GAME.Sound.playShootSound();
-         GAME.Helper.FullScreen();
-        }, false);
-        document.getElementById('snowflake').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            GAME.operate.snowShoot(getTargetVector(), camera, scene);
-        }, false);
-        document.getElementById('laser').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            GAME.operate.laserShoot(scene);
-        }, false);
-        document.getElementById('snowflake_num').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            GAME.operate.snowShoot(getTargetVector(), camera, scene);
-        }, false);
-        document.getElementById('laser_num').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            GAME.operate.laserShoot(scene);
-        }, false);
-        document.getElementById('lighting_num').addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            GAME.operate.bumbShoot(getTargetVector(), camera, scene);
-        }, false);
-        
-        
-        /* $('#bullet').click(function () {
-         GAME.Helper.FullScreen();
-         });*/
-
-        /*  $('#bullet').click(function () {
-         GAME.operate.commonShoot(getTargetVector(), camera, scene);
-         */
-        /*GAME.Helper.FullScreen();*/
-        /*
-
-         });
-         $('#snowflake').click(function () {
-         console.log('snowflake');
-         GAME.operate.snowShoot(getTargetVector(), camera, scene);
-         });
-         $('#laser').click(function () {
-         GAME.operate.laserShoot(scene);
-         });*/
-        /*   $('#snowflake').click(function () {
-         console.log('snowflake');
-         GAME.operate.snowShoot(getTargetVector(), camera, scene);
-         });
-         $('#laser').click(function () {
-         GAME.operate.laserShoot(scene);
-         });*/
+            }, false);
 
 
-    	/*$(document).bind('touchstart', function(ev) {});
+            //$('#snowflake').click(function () {
+            //    console.log('snowflake');
+            //    GAME.operate.snowShoot(getTargetVector(), camera, scene);
+            //});
+            //$('#laser').click(function () {
+            //    GAME.operate.laserShoot(scene);
+            //});
 
-        $('#up').bind('touchstart', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = true;
-            moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
-        });
 
-        $('#down').bind('touchstart', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.up = true;
-            moveDirection = GAME.Constants.DIRECTION_UP_MOVE;
-        });
-        $('#right').bind('touchstart', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.left = true;
-            moveDirection = GAME.Constants.DIRECTION_LEFT_MOVE;
-        });
-        $('#left').bind('touchstart', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.right = true;
-            moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
-        });
+            //$(document).bind('touchstart', function (ev) {
+            //});
+            //
+            //$('#up').bind('touchstart', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.down = true;
+            //    moveDirection = GAME.Constants.DIRECTION_DOWN_MOVE;
+            //});
+            //
+            //$('#down').bind('touchstart', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.up = true;
+            //    moveDirection = GAME.Constants.DIRECTION_UP_MOVE;
+            //});
+            //$('#right').bind('touchstart', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.left = true;
+            //    moveDirection = GAME.Constants.DIRECTION_LEFT_MOVE;
+            //});
+            //$('#left').bind('touchstart', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.right = true;
+            //    moveDirection = GAME.Constants.DIRECTION_RIGHT_MOVE;
+            //});
+            //
+            //$('#pause').bind('tarchstart', function (ev) {
+            //    ev.preventDefault();
+            //    moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
+            //});
+            //
+            //$('#left').bind('touchend', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.right = false;
+            //});
+            //
+            //$('#right').bind('touchend', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.left = false;
+            //});
+            //
+            //$('#up').bind('touchend', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.down = false;
+            //});
+            //$('#down').bind('touchend', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.SharedVar.down = false;
+            //});
+            //$('#bullet').bind('touchstart', function (ev) {
+            //    ev.preventDefault();
+            //    GAME.operate.commonShoot(getTargetVector(), camera, scene);
+            //    //shootm.play();
+            //    GAME.Sound.playShootSound();
+            //    GAME.Helper.FullScreen();
+            //});
 
-        $('#pause').bind('tarchstart', function(ev) {
-            ev.preventDefault();
-            moveDirection = GAME.Constants.DIRECTION_NONE_MOVE;
-        });
-
-        $('#left').bind('touchend', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.right = false;
-        });
-
-        $('#right').bind('touchend', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.left = false;
-        });
-
-        $('#up').bind('touchend', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = false;
-        });
-        $('#down').bind('touchend', function(ev) {
-            ev.preventDefault();
-            GAME.SharedVar.down = false;
-        });
-        $('#bullet').bind('touchstart', function(ev) {
-            ev.preventDefault();
-            GAME.operate.commonShoot(getTargetVector(), camera, scene);
-            //shootm.play();
-            GAME.Sound.playShootSound();
-            GAME.Helper.FullScreen();
-        });
-*/
-
-        if (GAME.SharedVar.gravity)
-            window.addEventListener('devicemotion', GAME.gravity.motionHandler, false);
+            //if (GAME.SharedVar.gravity) {
+            //
+            //}
+        }
     }
 
-    function doNoting() {}
+    function doNoting() {
+    }
 
     this.removeListener = function () {
         document.getElementById('up').removeEventListener('touchstart', doNoting, false);
@@ -617,9 +646,9 @@ GAME.GameStart = function () {
         document.getElementById('right').removeEventListener('touchend', doNoting, false);
         document.getElementById('left').removeEventListener('touchend', doNoting, false);
         document.getElementById('bullet').removeEventListener('touchstart', doNoting, false);
-        document.getElementById('snowflake').removeEventListener('touchstart', doNoting, false);
-        document.getElementById('laser').removeEventListener('touchstart', doNoting, false);
-        document.getElementById('lighting').removeEventListener('touchstart', doNoting, false);
+        document.getElementById('snowflake_num').removeEventListener('touchstart', doNoting, false);
+        document.getElementById('laser_num').removeEventListener('touchstart', doNoting, false);
+        document.getElementById('bomb_num').removeEventListener('touchstart', doNoting, false);
     }
 
     /**添加性能监视*/
@@ -863,9 +892,9 @@ GAME.GameStart = function () {
     this.handleHit = function (position) {
         hitEnemy(position);
     }
-    
-    this.reset = function(){
-    	resetAll();
+
+    this.reset = function () {
+        resetAll();
     }
 }
 

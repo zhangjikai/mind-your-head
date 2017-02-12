@@ -21,30 +21,16 @@ GAME.openScreen = {
             model.innerHTML = "无限模式";
             this.gameMode = GAME.Constants.SINGLE_MODE;
             localStorage.setItem('gameType', GAME.Constants.SCORE_MODE);
-        } else if (model.className == "model_unlimited") {
-            model.className = "model_multi";
-            model.innerHTML = "对战模式";
-            this.gameMode = GAME.Constants.FIGHT_MODE;
-        } else if (model.className == "model_multi") {
-            model.className = "model_level";
+        }  else {
+            model.className = "model_move";
             model.innerHTML = "关卡模式";
             this.gameMode = GAME.Constants.SINGLE_MODE;
             localStorage.setItem('gameType', GAME.Constants.GRADE_MODE);
-        } else if (model.className == "model_level") {
-            model.className = "model_unlimited";
-            model.innerHTML = "无限模式";
-            this.gameMode = GAME.Constants.SINGLE_MODE;
-            localStorage.setItem('gameType', GAME.Constants.SCORE_MODE);
         }
     },
 
     fullScreen: function () {
-        /*
-         * var docElm = document.documentElement; if (docElm.requestFullscreen) {
-         * docElm.requestFullscreen(); } else if (docElm.mozRequestFullScreen) {
-         * docElm.mozRequestFullScreen(); } else if
-         * (docElm.webkitRequestFullScreen) { docElm.webkitRequestFullScreen(); }
-         */
+
 
         if (window.screen) {// 判断浏览器是否支持window.screen判断浏览器是否支持screen
             var myw = screen.availWidth; // 定义一个myw，接受到当前全屏的宽
@@ -68,26 +54,11 @@ GAME.openScreen = {
     },
 
     showCamera: function () {
-        /*
-         * var rank = document.getElementById("camera"); if (rank.className ==
-         * "camera_white") { rank.className = "camera_blue";
-         * document.getElementById("camera_block").className = "camera_show"; }
-         * else { rank.className = "camera_white";
-         * document.getElementById("camera_block").className = "camera_fade"; }
-         */
+
     },
 
     showSet: function () {
-        //var set = document.getElementById("set");
-        //if (set.className == "set_white") {
-        //    this.fade();
-        //    set.className = "set_blue";
-        //    document.getElementById("set_block").className = "set_show";
-        //} else {
-        //    set.className = "set_white";
-        //    document.getElementById("set_block").className = "set_fade";
-        //    this.show();
-        //}
+
 
         var inst = $('[data-remodal-id=setting]').remodal();
         inst.open();
@@ -171,14 +142,14 @@ GAME.openScreen = {
         document.location.href = "crop/index.html";
 
         /*if (this.gameMode == GAME.Constants.SINGLE_MODE) {
-            if (document.getElementById('photo').checked) {
-                localStorage.setItem('picType', 'photo');
-                document.location.href = "photo/getPhoto.html";
-            } else {
-                localStorage.setItem('picType', 'select');
-                document.location.href = 'server/loginUpImg.jsp'
-            }
-        }*/
+         if (document.getElementById('photo').checked) {
+         localStorage.setItem('picType', 'photo');
+         document.location.href = "photo/getPhoto.html";
+         } else {
+         localStorage.setItem('picType', 'select');
+         document.location.href = 'server/loginUpImg.jsp'
+         }
+         }*/
 
         if (this.gameMode == GAME.Constants.FIGHT_MODE) {
 //        	var filename = document.location.search.split('&')[document.location.search.split('&').length-1].substring(9);
@@ -243,22 +214,30 @@ window.onload = function () {
     var sound = localStorage.getItem('sound') || 1;
     var music = localStorage.getItem('music') || 1;
     var photo = localStorage.getItem('photo') || 1;
-    console.log(photo);
+    //console.log(photo);
     /*  var gameType = localStorage.getItem('gameType') || GAME.Constants.GRADE_MODE;*/
-    if (window.DeviceMotionEvent) {
-        var gravity = localStorage.getItem('gravity') || 1;
-    } else {
-        document.getElementById('gravity').disabled = true;
-        var gravity = 0;
-    }
+
+    var isPhone = GAME.Device.any();
+    console.log(isPhone);
+    var gravity = 0;
+
 
     document.getElementById('sound').checked = parseInt(sound);
     document.getElementById('music').checked = parseInt(music);
     document.getElementById('photo').checked = parseInt(photo);
-    /* if (gameType == GAME.Constants.GRADE_MODE) {
-     document.getElementById('gameType').checked = true;
-     } else {
-     document.getElementById('gameType').checked = false;
-     }*/
-    document.getElementById('gravity').checked = parseInt(gravity);
-}
+
+    if (isPhone) {
+        if (window.DeviceMotionEvent) {
+            gravity = localStorage.getItem('gravity') || 1;
+        } else {
+            document.getElementById('gravity').disabled = true;
+            gravity = 0;
+        }
+        document.getElementById('gravity').checked = parseInt(gravity);
+    } else {
+        document.getElementById('gravity').checked = parseInt(gravity);
+        document.getElementById('gravity').disabled = true;
+
+    }
+
+};

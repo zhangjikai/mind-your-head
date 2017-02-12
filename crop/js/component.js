@@ -294,7 +294,7 @@ var resizeableImage = function (image_target) {
         localStorage.num = num;
         localStorage.setItem(num, crop_canvas.toDataURL("image/png"));
 
-        window.location.href = "../photo/testPhoto.html";
+        window.location.href = "loadPhoto.html";
         //window.open(crop_canvas.toDataURL("image/png"));
     };
 

@@ -16,7 +16,7 @@ GAME.Operate = function () {
     var bulletIndex = 0;
     var laseLeft = localStorage.getItem('laserLeft') || 10;
     var snowLeft = localStorage.getItem('snowLeft') || 10;
-    var bumbLeft = localStorage.getItem('lightLeft') || 10;
+    var bumbLeft = localStorage.getItem('bumbLeft') || 10;
 
     this.commonShoot = function (vector, camera, scene) {
         if (canCommonShoot) {
@@ -66,9 +66,12 @@ GAME.Operate = function () {
             GAME.ObjectPool.getLaserParticle().beginLaser(scene);
             canLaserShoot = false;
             laserCount = 0;
-            document.getElementById("laser").className = "laser_cool";
+            //document.getElementById("laser").className = "laser_cool";
+            $("#laser").removeClass("laser-use");
+            $("#laser").addClass("laser-cool");
             laseLeft--;
             localStorage.setItem('laserLeft', laseLeft);
+            $('#laser_num').html(laseLeft);
             GAME.Sound.playLaserSound();
 
         }
@@ -79,7 +82,9 @@ GAME.Operate = function () {
             GAME.ObjectPool.getSnowSphere().beginCommonBullet(vector, camera, scene);
             canSnowShoot = false;
             snowCount = 0;
-            document.getElementById("snowflake").className = "snow_cool";
+            //document.getElementById("snowflake").className = "snow_cool";
+            $("#snowflake").removeClass("snow-use");
+            $("#snowflake").addClass("snow-cool");
             snowLeft--;
             localStorage.setItem('snowLeft', snowLeft);
             $('#snowflake_num').html(snowLeft);
@@ -92,11 +97,12 @@ GAME.Operate = function () {
             GAME.ObjectPool.getOtherBullet().beginOtherBullet(vector, camera, scene);
             canBumbShoot = false;
             bumbCount = 0;
-            document.getElementById("lighting").className = 'lighting_cool';
+            //document.getElementById("bomb").className = 'bomb_cool';
+            $("#bomb").removeClass("bomb-use");
+            $("#bomb").addClass("bomb-cool");
             bumbLeft--;
-            console.log('bumbLeft', bumbLeft);
-            localStorage.setItem('lightLeft', bumbLeft);
-            $('#lighting_num').html(bumbLeft);
+            localStorage.setItem('bumbLeft', bumbLeft);
+            $('#bomb_num').html(bumbLeft);
             GAME.Sound.playIceSound();
         }
     }
@@ -110,19 +116,22 @@ GAME.Operate = function () {
         if (laserCount++ >= 500 && laseLeft > 0) {
             canLaserShoot = true;
             laserCount = 0;
-            document.getElementById("laser").className = "laser_use";
+            $("#laser").addClass("laser-use");
+            $("#laser").removeClass("laser-cool");
         }
 
         if (snowCount++ >= 500 && snowLeft > 0) {
             canSnowShoot = true;
             snowCount = 0;
-            document.getElementById("snowflake").className = "snow_use";
+            $("#snowflake").addClass("snow-use");
+            $("#snowflake").removeClass("snow-cool");
         }
 
         if (bumbCount++ >= 500 && bumbLeft > 0) {
             canBumbShoot = true;
             bumbCount = 0;
-            document.getElementById('lighting').className = "lighting_use";
+            $("#bomb").addClass("bomb-use");
+            $("#bomb").removeClass("bomb-cool");
         }
     }
 
@@ -171,8 +180,8 @@ GAME.Operate = function () {
     }
     this.addBumbLeft = function () {
         bumbLeft++;
-        $('#lighting_num').html(bumbLeft);
-        localStorage.setItem('lightLeft', bumbLeft);
+        $('#bomb_num').html(bumbLeft);
+        localStorage.setItem('bombLeft', bumbLeft);
     }
 
     this.setLaserShoot = function (flag) {
