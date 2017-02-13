@@ -67,12 +67,12 @@ GAME.openScreen = {
     showRank: function () {
         var inst = $('[data-remodal-id=game]').remodal();
         inst.open();
-        //GAME.record.check();
-        //$('#first').html(localStorage.getItem('record0'));
-        //$('#second').html(localStorage.getItem('record1'));
-        //$('#third').html(localStorage.getItem('record2'));
-        //$('#fouth').html(localStorage.getItem('record3'));
-        //$('#fifth').html(localStorage.getItem('record4'));
+        GAME.record.check();
+        $('#first').html(localStorage.getItem('record0'));
+        $('#second').html(localStorage.getItem('record1'));
+        $('#third').html(localStorage.getItem('record2'));
+        $('#fouth').html(localStorage.getItem('record3'));
+        $('#fifth').html(localStorage.getItem('record4'));
         //var rank = document.getElementById("rank");
         //if (rank.className == "rank_white") {
         //    this.fade();

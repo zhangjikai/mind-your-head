@@ -4,6 +4,16 @@
     padding: 0 35px 20px;
 }
 
+.custom-remodal ul{
+    padding-left: 0px;
+}
+
+.custom-remodal ul li{
+    font-size: 1em;
+    line-height: 1.5em;
+    list-style-type:none;
+}
+
 .modal-title {
     /* font-size: 1em;
      line-height: 1.2em;*/
