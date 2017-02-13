@@ -1,6 +1,5 @@
 # MindYourHead
 使用 three.js 框架写的一款 3D 射击游戏
-
 <!-- toc -->
 
 - [游戏介绍](#%E6%B8%B8%E6%88%8F%E4%BB%8B%E7%BB%8D)
