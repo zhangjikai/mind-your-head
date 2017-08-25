@@ -59,20 +59,24 @@ var resizeableImage = function (image_target) {
             reader.onload = function (e) {
                 var image = new Image();
                 image.src = e.target.result;
-                var width = image.width;
-                $("#upload").css("display", "none");
-                $("#crop").css("display", "block");
-                //console.log($("#resize-container"));
-                /*var windowWidth = document.getElementById("resize-container").clientWidth;
-                console.log(windowWidth);*/
-                windowWidth = 200;
+                image.onload = function() {
+                    var width = image.width;
+                    $("#upload").css("display", "none");
+                    $("#crop").css("display", "block");
+                    //console.log($("#resize-container"));
+                    /*var windowWidth = document.getElementById("resize-container").clientWidth;
+                     console.log(windowWidth);*/
+                    windowWidth = 200;
 
-                if(width > windowWidth) {
-                    width = windowWidth;
+                    if(width > windowWidth) {
+                        width = windowWidth;
+                    }
+                    /*console.log(width);*/
+                    orig_src.src = compressImage(image, getImgExtension(file.name), width);
+
+                    $("#resize-img").attr("src", orig_src.src);
                 }
-                /*console.log(width);*/
-                orig_src.src = compressImage(image, getImgExtension(file.name), width);
-                $("#resize-img").attr("src", orig_src.src);
+
 
 
             }
@@ -87,7 +91,7 @@ var resizeableImage = function (image_target) {
         if (format == null || format == "") {
             format = "image/png";
         }
-        format = "image/png";
+        //format = "image/png";
         if (width > max_width) {
             height = Math.round(height *= max_width / width);
             width = max_width;
@@ -95,6 +99,7 @@ var resizeableImage = function (image_target) {
         // resize the canvas and draw the image data into it
         canvas.width = width;
         canvas.height = height;
+
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         return canvas.toDataURL(format);
